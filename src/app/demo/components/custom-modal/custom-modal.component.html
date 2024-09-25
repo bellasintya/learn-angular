@@ -1,0 +1,22 @@
+<div class="modal-backdrop" *ngIf="isVisible" (click)="close()"></div>
+
+<div class="modal" *ngIf="isVisible">
+  <div class="modal-header">
+    <h5 class="modal-title pt-3">{{ title }}</h5>
+    <button type="button" class="close-button" (click)="close()">×</button>
+  </div>
+  <div class="modal-body">
+    <ng-content></ng-content>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="button button-primary button-transparent p-2" style="display: inline-flex;" (click)="confirm()">
+      <img src="assets/icons/cross-small.svg" class="icon" style="width: 25px; height: 20px; display: block;" alt="icon"/>
+      <span style="display: block; margin-top: 3px;">Cancel</span>
+    </button>
+    <button type="button" class="button button-primary button-transparent p-2" (click)="close()">
+      <img src="assets/icons/check.svg" class="icon" style="width: 14px; height: 14px;" alt="icon"/>
+      Save
+    </button>
+  </div>
+</div>
+

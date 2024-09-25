@@ -1,0 +1,8 @@
+<button 
+    [type]="type"
+    [disabled]="disabled"
+    [ngClass]="color"
+    [class]="class">
+    <img *ngIf="icon" [src]="icon" class="icon" alt="icon"/>
+    {{ label }}
+</button>

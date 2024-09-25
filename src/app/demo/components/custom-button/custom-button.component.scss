@@ -1,0 +1,86 @@
+$primary-color: #007bff;
+$secondary-color: #6c757d;
+$disabled-color: #ccc;
+$success-color: #22C55E;
+$purple-color: #A855F7;
+$warning-color: #F59E0B;
+$danger-color: #DC2626;
+
+// Mixin for button styles
+@mixin button-styles($color) {
+  background-color: $color;
+  color: #fff;
+  border: none;
+  font-size: 12px;
+  font-weight: bold;
+  cursor: pointer;
+  padding: 10px 15px;
+  border-radius: 10px;
+  transition: background-color 0.3s ease;
+}
+
+.custom-button {
+  &.primary {
+    @include button-styles($primary-color);
+  }
+
+  &.secondary {
+    @include button-styles($secondary-color);
+  }
+
+  &.success {
+    @include button-styles($success-color);
+  }
+
+  &.purple {
+    @include button-styles($purple-color);
+  }
+
+  &.danger {
+    @include button-styles($danger-color);
+  }
+
+  &:disabled {
+    @include button-styles($disabled-color);
+    cursor: not-allowed;
+  }
+
+  .material-icons {
+    font-size: 16px;
+    vertical-align: middle;
+    margin-right: 5px;
+  }
+}
+
+.icon {
+  width: 10px;
+  height: 10px;
+  margin-right: 8px; /* Space between icon and text */
+}
+
+// Mixin for button circle style
+@mixin button-circle-style($color) {
+  background-color: $color;
+  color: #fff;
+  border: none;
+  font-size: 12px;
+  font-weight: bold;
+  cursor: pointer;
+  padding: 10px 13px;
+  border-radius: 50%;
+  width: 35px;
+  height: 33px;
+  transition: background-color 0.3s ease;
+}
+
+.button-circle {
+
+  &.success {
+    @include button-circle-style($success-color);
+  }
+
+  &.warning {
+    @include button-circle-style($warning-color);
+  }
+  
+}

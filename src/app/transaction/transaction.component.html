@@ -1,0 +1,30 @@
+<div>
+    <h5>Transaction History</h5>
+    <app-custom-modal 
+        [title]="'Are you sure want to delete all of this transaction history?'"
+        [isVisible]="isModalVisible" 
+        (closeModal)="onModalClose()" 
+        (confirmModal)="onModalConfirm()">
+    </app-custom-modal>
+    <div class="card-container">
+        <app-custom-button 
+            label="Delete" 
+            color="danger" 
+            icon="assets/icons/trash.svg"
+            class="custom-button mr-1"
+            (click)="openModal()">
+        </app-custom-button>
+        <app-custom-button 
+            label="Export" 
+            color="purple" 
+            icon="assets/icons/upload.svg"
+            (click)="onSave()">
+        </app-custom-button>
+    </div>
+    <app-custom-table 
+        [columns]="columns"
+        [data]="data"
+        [actions]="tableActions"    
+    >  
+    </app-custom-table>
+</div>

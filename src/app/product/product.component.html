@@ -1,0 +1,70 @@
+<div>
+    <h5>Add Product</h5>
+    <app-custom-modal 
+        [title]="'Product Details'"
+        [isVisible]="isModalVisible" 
+        (closeModal)="onModalClose()" 
+        (confirmModal)="onModalConfirm()">
+        <div>
+            <label class="label-field">Name</label>
+            <input class="input-field" type="text" id="name" />
+        </div>
+        <div>
+            <label class="label-field mt-3">Stok</label>
+            <select name="cars" id="stock" class="input-dropdown">
+                <option value="instock">Instock</option>
+                <option value="outstock">Outstock</option>
+            </select>
+        </div>
+        <div>
+            <label class="label-field mt-3">Satuan</label>
+
+            <div style="display: flex;">
+                <div style="width: 50%;">
+                    <input type="radio" id="satuan1" name="satuan" value="pcs">
+                    <label for="satuan1">Pcs</label><br>
+                    <input type="radio" id="satuan2" name="satuan" value="dus">
+                    <label for="satuan2">Dus</label><br>
+                </div>
+                <div style="width: 50%;">
+                    <input type="radio" id="satuan3" name="satuan" value="kg">
+                    <label for="satuan3">Kg</label><br>
+                    <input type="radio" id="satuan4" name="satuan" value="pak">
+                    <label for="satuan4">Pak</label><br>
+                </div>                 
+            </div>  
+
+        </div>
+        <div style="display: flex; justify-content: space-between;" class="mt-3">
+            <div style="width: 48%;">
+                <label class="label-field">Harga</label>
+                <input class="input-field" type="text" id="price" />
+            </div>
+            <div style="width: 49%;">
+                <label class="label-field">Jumlah Barang</label>
+                <input class="input-field" type="text" id="qty" />
+            </div>
+        </div>
+    </app-custom-modal>
+    <div class="card-container">
+        <app-custom-button 
+            label="New" 
+            color="success" 
+            icon="assets/icons/plus.svg"
+            class="custom-button mr-1"
+            (click)="openModal()">
+        </app-custom-button>
+        <app-custom-button 
+            label="Export" 
+            color="purple" 
+            icon="assets/icons/upload.svg"
+            (click)="onSave()">
+        </app-custom-button>
+    </div>
+    <app-custom-table 
+        [columns]="columns"
+        [data]="data"
+        [actions]="tableActions"    
+    >  
+    </app-custom-table>
+</div>

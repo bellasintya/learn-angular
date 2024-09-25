@@ -1,0 +1,63 @@
+// Variables for reusable colors and sizes
+$border-color: #D8DEE2;
+$background-color-header: #F8F9FA;
+$padding: 8px;
+$custom-table-width: 90%;
+
+.custom-table {
+  width: $custom-table-width;
+  border-collapse: collapse;
+  margin: 10px 0;
+
+  th, td {
+    border: 1px solid $border-color;
+    padding: $padding;
+  }
+
+  th {
+    background-color: $background-color-header;
+    text-align: left;
+  }
+
+  .td-img {
+    width: 100px;
+    height: 100px;
+  }
+}
+
+.pagination-controls {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  width: $custom-table-width;
+}
+
+.button-page {
+  padding: 5px 10px;
+  border: none;
+}
+
+.span-page {
+  background: lightblue;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  padding: 11px 16px;
+}
+
+.input-dropdown {
+  display: block; 
+  width: 98%; 
+  height: 36px; 
+  border-radius: 8px; 
+  padding: 10px;
+  border: 2px solid #dcdcdd;
+
+  &:focus {
+      color: #212529;
+      background-color: #fff;
+      border-color: #86b7fe;
+      outline: 0;
+      box-shadow: 0 0 0 .25rem rgba(13, 110, 253, .25);
+  }
+}

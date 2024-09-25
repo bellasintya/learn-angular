@@ -1,0 +1,86 @@
+<table class="custom-table">
+  <thead>
+    <tr>
+      <th *ngFor="let column of columns" (click)="column.sortable ? sort(column.field) : null">
+        {{ column.header }}
+        <!-- Show sorting icon if the column is sortable -->
+        <ng-container *ngIf="column.sortable">
+          <span>
+            <img *ngIf="sortedColumn === column.field && sortDirection === 'asc'" style="width: 10px; height: 10px;" 
+                 src="assets/icons/arrow-down.svg" alt="Ascending">
+            <img *ngIf="sortedColumn === column.field && sortDirection === 'desc'" style="width: 10px; height: 10px;"
+                 src="assets/icons/arrow-up.svg" alt="Descending">
+            <img *ngIf="sortedColumn !== column.field" src="assets/icons/sort.svg" alt="Sort" style="opacity: 0.5; width: 10px; height: 10px;">
+          </span>
+        </ng-container>
+      </th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <ng-container *ngIf="data && data.length; else noDataTemplate">
+      <tr *ngFor="let row of sortedData">
+        <td *ngFor="let column of columns">
+          <!-- Conditionally render an image or text based on the column configuration -->
+          <ng-container *ngIf="column.isImage; else textTemplate">
+            <img [src]="row[column.field]" alt="{{ column.header }}" class="{{ imgClass }}" />
+          </ng-container>
+          <!-- Template for text content -->
+          <ng-template #textTemplate>
+            {{ row[column.field] }}
+          </ng-template>
+        </td>
+        <td> 
+          <!-- Render actions dynamically -->
+          <ng-container *ngFor="let action of actions">
+            <app-custom-button
+              [color]="action.color"
+              [icon]="action.icon"
+              class="button-circle mr-1"
+              [attr.aria-label]="action.label"
+              (click)="handleAction(action, row)">
+            </app-custom-button>
+          </ng-container>
+        </td>
+      </tr>
+    </ng-container>
+  </tbody>
+</table>
+
+<!-- Template for empty state -->
+<ng-template #noDataTemplate>
+  <tr>
+    <td [attr.colspan]="columns.length + 1">{{ emptyMessage }}</td>
+  </tr>
+</ng-template>
+
+<!-- Pagination Controls -->
+
+<div class="pagination-controls">
+  <!-- Showing X to Y of Z entries -->
+  <span style="padding: 10px;">
+    Showing {{startEntry}} to {{endEntry}} of {{data.length}} entries
+  </span>
+
+  <!-- Pagination buttons -->
+  <button (click)="firstPage()" [disabled]="currentPage === 1" class="button-page">
+    <img style="width: 10px; height: 10px;" src="assets/icons/angle-left.svg" alt="Ascending">
+    <img style="width: 10px; height: 10px; margin-left: -5px;"  src="assets/icons/angle-left.svg" alt="Ascending">
+  </button>
+  <button (click)="prevPage()" [disabled]="currentPage === 1" class="button-page">
+    <img style="width: 10px; height: 10px;" src="assets/icons/angle-left.svg" alt="Ascending">
+  </button>
+  <span class="span-page">{{currentPage}}</span>
+  <button (click)="nextPage()" [disabled]="currentPage === totalPages" class="button-page">
+    <img style="width: 10px; height: 10px; transform: rotate(180deg);" src="assets/icons/angle-left.svg" alt="Ascending">
+  </button>
+  <button (click)="lastPage()" [disabled]="currentPage === totalPages" class="button-page">
+    <img style="width: 10px; height: 10px; margin-right: -5px; transform: rotate(180deg);" src="assets/icons/angle-left.svg" alt="Ascending">
+    <img style="width: 10px; height: 10px; transform: rotate(180deg);" src="assets/icons/angle-left.svg" alt="Ascending">
+  </button>
+
+  <!-- Dropdown for page size -->
+  <select [(ngModel)]="pageSize" (change)="onPageSizeChange()" class="input-dropdown" style="width: 60px;">
+    <option *ngFor="let size of pageSizes" [value]="size">{{size}}</option>
+  </select>
+</div>

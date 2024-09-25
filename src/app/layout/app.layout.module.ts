@@ -17,6 +17,7 @@ import { AppFooterComponent } from './app.footer.component';
 import { AppConfigModule } from './config/config.module';
 import { AppSidebarComponent } from "./app.sidebar.component";
 import { AppLayoutComponent } from "./app.layout.component";
+import { ProductModule } from '../product/product.module';
 
 @NgModule({
     declarations: [
@@ -28,6 +29,7 @@ import { AppLayoutComponent } from "./app.layout.component";
         AppLayoutComponent,
     ],
     imports: [
+        ProductModule,
         BrowserModule,
         FormsModule,
         HttpClientModule,

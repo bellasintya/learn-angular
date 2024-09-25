@@ -17,6 +17,18 @@ import { AppLayoutComponent } from './layout/app.layout.component';
                                     './demo/components/dashboard/dashboard.module'
                                 ).then((m) => m.DashboardModule),
                         },
+                        {
+                            path: 'product',
+                            loadChildren: () =>
+                               import('./product/product.module'
+                               ).then((m) => m.ProductModule),
+                        },
+                        {
+                            path: 'transaction',
+                            loadChildren: () =>
+                               import('./transaction/transaction.module'
+                               ).then((m) => m.TransactionModule),
+                        },
                     ],
                 },
             ],
